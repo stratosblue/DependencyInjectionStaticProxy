@@ -4,7 +4,7 @@ Service static proxy tool for DI container, Create a static proxy for the servic
 
 `DI` 容器的服务静态代理工具，在不更改 `DI` 容器内服务实现的前提下为服务创建静态代理；
 
- - 使用 `IReplacedServiceAccessor<TServier>` 访问容器内的原始实例；
+ - 使用 `IReplacedServiceAccessor<TService>` 访问容器内的原始实例；
 
 -------
 

@@ -162,7 +162,7 @@ public class GenericTest
     }
 
     protected static void CheckReplacedSucceed<TCounter>(IServiceProvider serviceProvider)
-            where TCounter : ICounter
+        where TCounter : ICounter
     {
         var counter = serviceProvider.GetRequiredService<TCounter>();
 
