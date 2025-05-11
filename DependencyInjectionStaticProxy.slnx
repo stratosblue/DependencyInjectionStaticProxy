@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/sample/">
+    <Project Path="sample/WebApplicationSample/WebApplicationSample.csproj" />
+  </Folder>
+  <Folder Name="/solution items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="CodeMaid.config" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DependencyInjectionStaticProxy/DependencyInjectionStaticProxy.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/DependencyInjectionStaticProxy.Test/DependencyInjectionStaticProxy.Test.csproj" />
+  </Folder>
+</Solution>
