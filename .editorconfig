@@ -7,14 +7,8 @@ end_of_line = crlf
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-dotnet_style_qualification_for_field = false:silent
-dotnet_style_qualification_for_property = false:silent
-dotnet_style_qualification_for_method = false:silent
-dotnet_style_qualification_for_event = false:silent
-dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 indent_size = 2
 tab_width = 2
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
 
 # c# 文件
 [*.cs]

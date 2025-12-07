@@ -1,50 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <RootNamespace>Microsoft.Extensions.DependencyInjection</RootNamespace>
-
+    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
+    
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-
+    
     <IsPackable>true</IsPackable>
-
+    
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
   </PropertyGroup>
-
+  
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <None Include="..\..\readme.md" Link="readme.md" Pack="true" PackagePath="/" />
-
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
-
+  
   <!--Package Info-->
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
-
+    
     <Description>Create a static proxy for the service without changing the service implementation within the DI container; 在不更改 `DI` 容器内服务实现的前提下为服务创建静态代理；Use IReplacedServiceAccessor{TService} access the original service</Description>
-
+    
     <PackageIdPrefix>DependencyInjectionStaticProxy</PackageIdPrefix>
     <Authors>stratos</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/stratosblue/DependencyInjectionStaticProxy</PackageProjectUrl>
-
+    
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-
+    
     <PackageTags>dependencyinjection dependency-injection staticproxy static-proxy serviceproxy service-proxy di ioc</PackageTags>
   </PropertyGroup>
-
+  
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
-
+  
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
+  
 </Project>

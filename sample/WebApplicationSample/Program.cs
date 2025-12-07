@@ -2,15 +2,14 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 builder.Services.ProxyReplace<IConfiguration, ProxiedConfiguration>();
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.MapOpenApi();
+app.MapSwaggerUI();
 
 var summaries = new[]
 {

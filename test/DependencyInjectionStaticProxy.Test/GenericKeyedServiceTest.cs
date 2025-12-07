@@ -137,7 +137,7 @@ public class GenericKeyedServiceTest
             services.Add(ServiceDescriptor.DescribeKeyed(typeof(IKeyedCounter), ServiceName2, (_, _) => new KeyedCounter(), ServiceLifetime.Scoped));
             services.Add(ServiceDescriptor.DescribeKeyed(typeof(IKeyedCounter), ServiceName2, (_, _) => new KeyedCounter(), ServiceLifetime.Singleton));
 
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
         });
     }
 
@@ -154,7 +154,7 @@ public class GenericKeyedServiceTest
             services.Add(ServiceDescriptor.DescribeKeyed(typeof(IKeyedCounter), ServiceName2, typeof(KeyedCounter), serviceLifetime));
 
             services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1);
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
         });
     }
 
@@ -169,7 +169,7 @@ public class GenericKeyedServiceTest
             services.Add(ServiceDescriptor.Describe(typeof(KeyedCounter), typeof(KeyedCounter), serviceLifetime));
             services.Add(ServiceDescriptor.DescribeKeyed(typeof(KeyedCounter), ServiceName1, typeof(KeyedCounter), serviceLifetime));
             services.Add(ServiceDescriptor.DescribeKeyed(typeof(KeyedCounter), ServiceName2, typeof(KeyedCounter), serviceLifetime));
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplaceKeyed<KeyedCounter, KeyedCounterBaseLimitedKeyedCounter>(ServiceName1));
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplaceKeyed<KeyedCounter, KeyedCounterBaseLimitedKeyedCounter>(ServiceName1));
         });
     }
 
@@ -178,7 +178,7 @@ public class GenericKeyedServiceTest
     {
         var serviceProvider = BuildServiceProvider(services =>
         {
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplaceKeyed<IKeyedCounter, LimitedKeyedCounter>(ServiceName1));
         });
     }
 
@@ -199,7 +199,7 @@ public class GenericKeyedServiceTest
         var counter = serviceProvider.GetRequiredKeyedService<TKeyedCounter>(ServiceName1);
 
         Assert.AreEqual(0, counter.Count);
-        Assert.IsTrue(LimitedKeyedCounter.MaxValue > 0);
+        Assert.IsGreaterThan(0, LimitedKeyedCounter.MaxValue);
 
         counter.Increment();
         counter.Increment();
@@ -229,7 +229,7 @@ public class GenericKeyedServiceTest
         counter = serviceProvider.GetRequiredKeyedService<TKeyedCounter>(ServiceName2);
 
         Assert.AreEqual(0, counter.Count);
-        Assert.IsTrue(LimitedKeyedCounter.MaxValue > 0);
+        Assert.IsGreaterThan(0, LimitedKeyedCounter.MaxValue);
 
         counter.Increment();
         counter.Increment();

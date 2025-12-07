@@ -110,7 +110,7 @@ public class GenericTest
         {
             services.Add(ServiceDescriptor.Describe(typeof(ICounter), _ => new Counter(), ServiceLifetime.Scoped));
             services.Add(ServiceDescriptor.Describe(typeof(ICounter), _ => new Counter(), ServiceLifetime.Singleton));
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
         });
     }
 
@@ -124,7 +124,7 @@ public class GenericTest
         {
             services.Add(ServiceDescriptor.Describe(typeof(ICounter), typeof(Counter), serviceLifetime));
             services.ProxyReplace<ICounter, LimitedCounter>();
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
         });
     }
 
@@ -137,7 +137,7 @@ public class GenericTest
         var serviceProvider = BuildServiceProvider(services =>
         {
             services.Add(ServiceDescriptor.Describe(typeof(Counter), typeof(Counter), serviceLifetime));
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplace<Counter, CounterBaseLimitedCounter>());
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplace<Counter, CounterBaseLimitedCounter>());
         });
     }
 
@@ -146,7 +146,7 @@ public class GenericTest
     {
         var serviceProvider = BuildServiceProvider(services =>
         {
-            Assert.ThrowsException<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
+            Assert.ThrowsExactly<InvalidOperationException>(() => services.ProxyReplace<ICounter, LimitedCounter>());
         });
     }
 
@@ -167,7 +167,7 @@ public class GenericTest
         var counter = serviceProvider.GetRequiredService<TCounter>();
 
         Assert.AreEqual(0, counter.Count);
-        Assert.IsTrue(LimitedCounter.MaxValue > 0);
+        Assert.IsGreaterThan(0, LimitedCounter.MaxValue);
 
         counter.Increment();
         counter.Increment();
