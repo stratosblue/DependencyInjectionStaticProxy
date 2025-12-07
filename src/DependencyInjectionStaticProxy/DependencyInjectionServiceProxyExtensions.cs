@@ -311,7 +311,11 @@ public static class DependencyInjectionServiceProxyExtensions
     {
         var getKeyedReplacedServiceAccessorGenericMethod = typeof(DependencyInjectionServiceProxyExtensions).GetMethod(nameof(GetKeyedReplacedServiceAccessor), BindingFlags.NonPublic | BindingFlags.Static);
         var getKeyedReplacedServiceAccessorMethod = getKeyedReplacedServiceAccessorGenericMethod!.MakeGenericMethod(serviceType, originServiceType);
+#if NETSTANDARD2_0
         return (Func<IServiceProvider, object?, object>)getKeyedReplacedServiceAccessorMethod.CreateDelegate(typeof(Func<IServiceProvider, object?, object>));
+#else
+        return getKeyedReplacedServiceAccessorMethod.CreateDelegate<Func<IServiceProvider, object?, object>>();
+#endif
     }
 
     #endregion Private 方法
