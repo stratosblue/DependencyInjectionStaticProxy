@@ -24,7 +24,7 @@
   
   <!--Package Info-->
   <PropertyGroup>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     
     <Description>Create a static proxy for the service without changing the service implementation within the DI container; 在不更改 `DI` 容器内服务实现的前提下为服务创建静态代理；Use IReplacedServiceAccessor{TService} access the original service</Description>
     
@@ -36,7 +36,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
     
-    <PackageTags>dependencyinjection dependency-injection staticproxy static-proxy serviceproxy service-proxy di ioc</PackageTags>
+    <PackageTags>dependencyinjection dependency-injection staticproxy static-proxy serviceproxy service-proxy diproxy di-proxy di ioc</PackageTags>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
